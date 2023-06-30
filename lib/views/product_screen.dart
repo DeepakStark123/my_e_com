@@ -17,6 +17,7 @@ class ProductScreen extends StatelessWidget {
     // ignore: unused_local_variable
     var productController = Get.put(ProductController())
       ..getProductsList(subCatId);
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: Text(subCat),
@@ -108,12 +109,11 @@ class ProductScreen extends StatelessWidget {
                     );
                   } else {
                     return GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 4.0,
                         mainAxisSpacing: 4.0,
-                        mainAxisExtent: 260,
+                        mainAxisExtent: (screenHeight * 0.33),
                       ),
                       itemCount: controller.productList.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -127,12 +127,11 @@ class ProductScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Align(
-                                  alignment: Alignment.center,
+                                Center(
                                   child: Image.network(
                                     imageBaseUrl +
                                         data['single_image'].toString(),
-                                    height: 150,
+                                    height: screenHeight * 0.2,
                                     fit: BoxFit.fill,
                                   ),
                                 ),

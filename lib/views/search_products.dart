@@ -15,6 +15,7 @@ class SearchProductScreen extends StatelessWidget {
     // ignore: unused_local_variable
     var productController = Get.put(ProductController())
       ..searchProductsList(productName);
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: Text(productName),
@@ -53,7 +54,7 @@ class SearchProductScreen extends StatelessWidget {
                 builder: (controller) {
                   if (controller.loading.value == true) {
                     return SizedBox(
-                      height: Get.height * 0.8,
+                      height: Get.height * 0.7,
                       child: const Center(
                         child: CircularProgressIndicator(),
                       ),
@@ -65,12 +66,11 @@ class SearchProductScreen extends StatelessWidget {
                     );
                   } else {
                     return GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 4.0,
                         mainAxisSpacing: 4.0,
-                        mainAxisExtent: 260,
+                        mainAxisExtent: (screenHeight * 0.33),
                       ),
                       itemCount: controller.serachProduct.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -84,12 +84,11 @@ class SearchProductScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Align(
-                                  alignment: Alignment.center,
+                                Center(
                                   child: Image.network(
                                     imageBaseUrl +
                                         data['single_image'].toString(),
-                                    height: 150,
+                                    height: screenHeight * 0.2,
                                     fit: BoxFit.fill,
                                   ),
                                 ),
