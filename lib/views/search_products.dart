@@ -15,7 +15,6 @@ class SearchProductScreen extends StatelessWidget {
     // ignore: unused_local_variable
     var productController = Get.put(ProductController())
       ..searchProductsList(productName);
-    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: Text(productName),
@@ -54,7 +53,7 @@ class SearchProductScreen extends StatelessWidget {
                 builder: (controller) {
                   if (controller.loading.value == true) {
                     return SizedBox(
-                      height: Get.height * 0.7,
+                      height: Get.height * 0.6,
                       child: const Center(
                         child: CircularProgressIndicator(),
                       ),
@@ -70,7 +69,7 @@ class SearchProductScreen extends StatelessWidget {
                         crossAxisCount: 2,
                         crossAxisSpacing: 4.0,
                         mainAxisSpacing: 4.0,
-                        mainAxisExtent: (screenHeight * 0.33),
+                        mainAxisExtent: (Get.height * 0.33),
                       ),
                       itemCount: controller.serachProduct.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -88,7 +87,7 @@ class SearchProductScreen extends StatelessWidget {
                                   child: Image.network(
                                     imageBaseUrl +
                                         data['single_image'].toString(),
-                                    height: screenHeight * 0.2,
+                                    height: Get.height * 0.2,
                                     fit: BoxFit.fill,
                                   ),
                                 ),

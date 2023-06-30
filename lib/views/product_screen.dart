@@ -17,7 +17,7 @@ class ProductScreen extends StatelessWidget {
     // ignore: unused_local_variable
     var productController = Get.put(ProductController())
       ..getProductsList(subCatId);
-    double screenHeight = MediaQuery.of(context).size.height;
+    double screenHeight = Get.height;
     return Scaffold(
       appBar: AppBar(
         title: Text(subCat),
@@ -97,7 +97,7 @@ class ProductScreen extends StatelessWidget {
                 builder: (controller) {
                   if (controller.loading.value == true) {
                     return SizedBox(
-                      height: Get.height * 0.8,
+                      height: Get.height * 0.6,
                       child: const Center(
                         child: CircularProgressIndicator(),
                       ),
